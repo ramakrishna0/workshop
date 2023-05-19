@@ -1,3 +1,4 @@
+/*
 package com.rk.springdatabase;
 
 import com.rk.springdatabase.entity.Person;
@@ -56,3 +57,4 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 	}
 }
+*/
