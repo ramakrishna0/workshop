@@ -1,3 +1,4 @@
+/*
 package com.rk.springdatabase;
 
 import com.rk.springdatabase.entity.Person;
@@ -37,3 +38,4 @@ public class SpringDatabaseApplication implements CommandLineRunner {
 		logger.info("All users -> {}", personJdbcDao.findAll());
 	}
 }
+*/
