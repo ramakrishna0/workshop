@@ -8,7 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/../spring-boot/spring-aop/src/main/java/com/rk/springaop/SpringAopApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-boot/spring-aop/src/main/java/com/rk/springaop/SpringAopApplication.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-boot/spring-database/src/main/java/com/rk/springdatabase/entity/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-boot/spring-database/src/main/java/com/rk/springdatabase/entity/Person.java" afterDir="false" />
+>>>>>>> spring-database
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +51,11 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+<<<<<<< HEAD
     "last_opened_file_path": "D:/git/ramakrishna/spring-boot/spring-database",
+=======
+    "last_opened_file_path": "D:/git/ramakrishna/Maven",
+>>>>>>> spring-database
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -60,6 +69,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+<<<<<<< HEAD
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -67,6 +77,8 @@
       </set>
     </option>
   </component>
+=======
+>>>>>>> spring-database
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
@@ -111,9 +123,13 @@
       <workItem from="1682685780160" duration="2732000" />
       <workItem from="1683269062211" duration="7092000" />
       <workItem from="1683571534571" duration="2287000" />
+<<<<<<< HEAD
       <workItem from="1683779791408" duration="157000" />
       <workItem from="1683783623980" duration="1627000" />
       <workItem from="1683817469928" duration="45000" />
+=======
+      <workItem from="1684465806055" duration="426000" />
+>>>>>>> spring-database
     </task>
     <servers />
   </component>
