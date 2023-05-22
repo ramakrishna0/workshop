@@ -1,4 +1,4 @@
-package com.rk.java;
+package com.java.functional.interfaces;
 
 import java.util.Arrays;
 import java.util.Collections;

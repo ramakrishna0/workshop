@@ -1,4 +1,4 @@
-package com.rk.java;
+package com.java.functional.interfaces;
 
 interface I{
     void m(String s);
