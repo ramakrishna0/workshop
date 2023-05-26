@@ -15,4 +15,8 @@ public class Person {
     private String location;
     private Timestamp birthDate;
 
+    public Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

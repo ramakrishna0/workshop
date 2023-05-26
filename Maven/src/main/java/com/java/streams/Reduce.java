@@ -1,9 +1,10 @@
-package com.java.functional.interfaces;
+package com.java.streams;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,6 +15,8 @@ public class Reduce {
         reduce();
         reduceByCollect();
         collectToMap();
+        groupingBy();
+        partitioningBy();
     }
 
     private static void minMax() {
@@ -109,5 +112,31 @@ though the explicit map-reduce form is more readable and therefore should usuall
         //mergeFunction -  BinaryOperator<V>
         System.out.println(map2);
         System.out.println(map2.getClass().getName());
+    }
+
+    public static void groupingBy() {
+        Map<Integer, List<String>> map = Stream.of("Joe", "Tom", "Tom", "Alan", "Peter", "Parker")
+                .collect(
+                        Collectors.groupingBy(String::length)
+                );
+        System.out.println(map);
+        //Map<K, List<V> Collectors.groupingBy(Function<T, K> keyMapper, ? Supplier mapSupplier, downStream);
+        TreeMap<Integer, Set<String>> map2 = Stream.of("Joe", "Tom", "Tom", "Alan", "Peter", "Parker")
+                .collect(Collectors.groupingBy(
+                                String::length,         //keyMapper --> required
+                                TreeMap::new,           //mapSupplier --> default HashMap
+                                Collectors.toSet()      //downStream --> default List
+                        ));
+
+    }
+
+    public static void partitioningBy() {
+        // Map<Boolean, List<V> Collectors.groupingBy(Predicate<Boolean, K> keyMapper, downStream);
+        Map<Boolean, Set<String>> map = Stream.of("Joe", "Tom", "Tom", "Alan", "Peter", "Parker")
+                .collect(Collectors.partitioningBy(
+                        s -> s.startsWith("T"),          //predicate function
+                        Collectors.toSet()              //downStream --> default List
+                ));
+        System.out.println(map);
     }
 }
