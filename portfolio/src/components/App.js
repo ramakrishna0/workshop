@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Projects from "./Projects";
-import Socials from "./Socials";
-import profile from './assests/profile.png';
+import SocialProfiles from "./SocialProfiles";
+import profile from '../assests/profile.png';
 import Title from "./Title";
 
 
@@ -42,7 +42,7 @@ class App extends Component {
                 <hr />
                 <Projects />
                 <hr />
-                <Socials />
+                <SocialProfiles />
             </div>
         );
     }
