@@ -19,23 +19,36 @@ const logBam = () => console.log('bam');        //call back function
 runLoop('bat', logBam);*/
 
 
-class Lion {
-    constructor(name, hairColor) {
+class Animal {
+    constructor(name, age) {
         this.name = name;
-        this.hairColor = hairColor;
+        this.age = age;
     }
-
-    logName() {
-        console.log('Roar! I am', this.name);
+    speak() {
+        console.log('I am', this.name, 'and I am', this.age, 'years old');
     }
-
 }
 
-const goldenLion = new Lion('Mufasa', 'golden');
-const redLion = new Lion('Scar', 'red');
+
+class Lion extends Animal{
+    constructor(name, age, hairColor, speed) {
+        super(name, age)
+        this.hairColor = hairColor;
+        this.speed = speed;
+    }
+    logName() {
+        console.log('ROAR! I have', this.hairColor, 'fur, and I can run', this.speed, 'miles per hour');
+    }
+}
+
+const goldenLion = new Lion('Mufasa', 24, 'golden', 40);
+const redLion = new Lion('Scar', 22, 'red', 30);
 
 console.log(goldenLion);
 console.log(redLion);
+
+goldenLion.speak();
+redLion.speak();
 
 goldenLion.logName();
 redLion.logName();
