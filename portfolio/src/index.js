@@ -12,8 +12,8 @@ root.render(
     <BrowserRouter history={createBrowserHistory()}>
         <Routes>
             {/*<Route path={'/'} element={<App />}></Route>*/}
-            <Route path='/' element={<Header Component={App}></Header>} />
-            <Route path='/jokes' element={<Header Component={Jokes}></Header>} />
+            <Route path='/' element={<Header><App /></Header>} />
+            <Route path='/jokes' element={<Header><Jokes /></Header>} />
         </Routes>
     </BrowserRouter>
 );
