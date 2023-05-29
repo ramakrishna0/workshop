@@ -2,8 +2,7 @@ import React from "react";
 import PROJECTS from "../data/project";
 
 // function Project () {
-const Project = (props) => {
-    const{ title, image, description, link } = props.project;
+const Project = ({ project: { title, image, description, link } }) => {
     return (
         <div style={{ display: 'inline-block', width: 300, margin:10 }}>
             <h3>{title}</h3>

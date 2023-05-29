@@ -1,14 +1,13 @@
 import React from "react";
 import SOCIAL_PROFILES from "../data/socialProfiles";
 
-const SocialProfile = props => {
-    const{ image, link } = props.socialProfile;
+const SocialProfile = ({ socialProfile: { image, link } }) => {
     return (
         <span>
                 <a href={link} >
                     <img src={image} alt='social-profile' style={{ width: 35, height: 35, margin:10 }}/>
                 </a>
-            </span>
+        </span>
     );
 }
 
