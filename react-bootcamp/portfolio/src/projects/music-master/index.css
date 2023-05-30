@@ -9,10 +9,6 @@
     src: url(assets/economica-bold1.ttf) format("opentype");;
 }
 
-.bg-color {
-    background-color: tan;
-}
-
 body {
     text-align: center;
     font-size: 20px;

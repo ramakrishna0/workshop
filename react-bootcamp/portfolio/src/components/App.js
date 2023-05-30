@@ -3,8 +3,6 @@ import Projects from "./Projects";
 import SocialProfiles from "./SocialProfiles";
 import profile from '../assests/profile.png';
 import Title from "./Title";
-import Header from "./Header";
-
 
 function App() {
     const [displayBio, setDisplayBio] = useState(false);
