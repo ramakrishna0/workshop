@@ -22,7 +22,6 @@ function App() {
     useEffect(() => {
         searchArtist('bruno');
     }, []);
-    // console.log(tracks);
     return (
         <div>
             <h2>Music Master</h2>

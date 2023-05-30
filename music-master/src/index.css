@@ -9,6 +9,10 @@
     src: url(assets/economica-bold.ttf) format("opentype");;
 }
 
+.bg-color {
+    background-color: tan;
+}
+
 body {
     text-align: center;
     font-size: 20px;
@@ -35,10 +39,8 @@ h1, h2, h3, h4, h5 {
 .track-text {
     position: absolute;
     width: 250px;
-    bottom: 0;
+    bottom: 30px;
     background-color: black;
     color: white;
     padding: 5px;
-
-
 }
