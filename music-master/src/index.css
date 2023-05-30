@@ -19,3 +19,26 @@ body {
 h1, h2, h3, h4, h5 {
     font-family: 'EconomicaBold', Arial, sans-serif;
 }
+
+.track .track-image {
+    width: 250px;
+    height: 250px;
+}
+
+.track {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.track-text {
+    position: absolute;
+    width: 250px;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    padding: 5px;
+
+
+}

@@ -19,6 +19,9 @@ function App() {
             .then(({tracks}) => setTracks(tracks))
             .catch(error => alert(error.message));
     }, [artist]);
+    useEffect(() => {
+        searchArtist('bruno');
+    }, []);
     // console.log(tracks);
     return (
         <div>
