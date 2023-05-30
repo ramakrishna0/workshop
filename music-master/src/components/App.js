@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Artist from "./Artist";
+import Tracks from "./Tracks";
 function App() {
     const [artistQuery, setArtistQuery] = useState('');
     const [artist, setArtist] = useState({});
@@ -37,6 +38,7 @@ function App() {
                 placeholder={'Search for an Artist'}/>
             <button onClick={searchArtist}>Search</button>
             <Artist artist={artist}/>
+            <Tracks tracks={tracks}/>
         </div>
     );
 }
