@@ -1,21 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Artist from "./Artist";
 import Tracks from "./Tracks";
+import Search from "./Search";
 function App() {
-    const [artistQuery, setArtistQuery] = useState('');
     const [artist, setArtist] = useState({});
     const [tracks, setTracks] = useState([]);
     const SPOTIFY_API_ADDRESS = 'https://spotify-api-wrapper.appspot.com/';
-
-    const updateArtistQuery = ({target: {value}}) => {          //event.target.value
-        setArtistQuery(value);
-    }
-    const handleKeyPress = ({key}) => {
-        if (key === 'Enter') {
-            searchArtist();
-        }
-    }
-    const searchArtist = () => {
+    const searchArtist = artistQuery => {
         fetch(`${SPOTIFY_API_ADDRESS}/artist/${artistQuery}`)
             .then(response => response.json())
             .then(({artists: {items, total}}) => total > 0 ? setArtist(items[0]) : undefined)
@@ -28,15 +19,11 @@ function App() {
             .then(({tracks}) => setTracks(tracks))
             .catch(error => alert(error.message));
     }, [artist]);
-    console.log(tracks);
+    // console.log(tracks);
     return (
         <div>
             <h2>Music Master</h2>
-            <input
-                onChange={updateArtistQuery}
-                onKeyUp={handleKeyPress}
-                placeholder={'Search for an Artist'}/>
-            <button onClick={searchArtist}>Search</button>
+            <Search searchArtist={searchArtist}/>
             <Artist artist={artist}/>
             <Tracks tracks={tracks}/>
         </div>

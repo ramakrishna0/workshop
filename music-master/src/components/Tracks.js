@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, from "react";
 
 const Track = ({track: {name, album, preview_url}, audio}) => {
-    const [playing, setPlaying] = useState(false);
     const playAudio = () => {
-        if (!audio.paused && audio.src === preview_url) {
+        if (preview_url === null || !audio.paused && audio.src === preview_url) {
             audio.pause();
             return;
         }
@@ -36,8 +35,8 @@ function Tracks(props) {
             {tracks.map(track => <Track key={track.id} track={track} audio={audio}/>)}
         </div>
     );
-
-
 }
+
+
 
 export default Tracks
