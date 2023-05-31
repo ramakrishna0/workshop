@@ -8,10 +8,9 @@ import './index.css';
 
 
 
-const store = configureStore({
+export const store = configureStore({
     reducer: rootReducer
 });
-
 store.subscribe(() => {
     console.log('subscribe store.getState()', store.getState())
 });
