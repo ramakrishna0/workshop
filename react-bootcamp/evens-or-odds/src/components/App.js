@@ -5,6 +5,9 @@ import Instructions from "./Intructions";
 import {fetchNewDeck} from "../actions/deck";
 import fetchStates from "../reducers/fetchStates";
 import DrawCard from "./DrawCard";
+import Card from "./Card";
+import Guess from "./Guess";
+import GameState from "./GameState";
 
 
 function App(props) {
@@ -15,8 +18,6 @@ function App(props) {
     const stopGame = () => {
         props.setGameStarted(false);
     };
-    console.log('props from App', props);
-
     if (props.fetchState === fetchStates.error) {
         return (
             <div>
@@ -33,7 +34,14 @@ function App(props) {
                 props.gameStarted ? (
                     <div>
                         <h3>The game is on!</h3>
+                        <GameState />
                         <br/>
+                        <Guess />
+                        <br />
+                        <DrawCard />
+                        <hr />
+                        <Card />
+                        <hr />
                         <button onClick={stopGame}>Cancel Game</button>
                     </div>
                 ) : (
@@ -46,8 +54,7 @@ function App(props) {
             }
             <hr />
             <Instructions />
-            <hr />
-            <DrawCard />
+
         </div>
     );
 }
