@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import MATRIX_FRAMES from "./data/matrix";
 
 export const useFetch = (endpoint, initialValue) => {
     const [result, setResult] = useState(initialValue);
@@ -8,4 +9,19 @@ export const useFetch = (endpoint, initialValue) => {
             .then(json => setResult(json));
     }, []);
     return result;
+};
+
+export const useDynamicTransition = ({delay, increment, length}) => {
+    const [index, setIndex] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex(prevIndex => (prevIndex + increment) % length);
+        }, delay);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [delay, increment]);
+
+    return index;
 };
