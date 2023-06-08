@@ -13,7 +13,7 @@ const PROJECTS = [
     {
         id: 2,
         title: "My API",
-        description: 'A REEST API that I build from scratch with GET and POST requests',
+        description: 'A REST API that I build from scratch with GET and POST requests',
         link: 'https://github.com/15Dkatz/react-essentials-bootcamp-commits',
         image: project2
     },
