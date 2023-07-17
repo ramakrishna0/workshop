@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("student")
 public class StudentController {
 
     // http://localhost:8080/student
-    @GetMapping("/student")
+    @GetMapping
     public ResponseEntity<Student> getStudent() {
         Student student = new Student(1, "Rama", "Krishna");
 //        return new ResponseEntity<>(student, HttpStatus.OK);
@@ -26,8 +27,8 @@ public class StudentController {
 
     }
 
-    // http://localhost:8080/student
-    @GetMapping("/getstudents")
+    // http://localhost:8080/student/getstudents
+    @GetMapping("getstudents")
     public ResponseEntity<List<Student>> getStudents() {
         List<Student> students = new ArrayList<>();
         students.add(new Student(1, "Rama", "Krishna"));
@@ -37,8 +38,8 @@ public class StudentController {
         return ResponseEntity.ok(students);
     }
 
-    // http://localhost:8080/student/1/"first-name"/"last-name"
-    @GetMapping("student/{id}/{first-name}/{last-name}")
+    // http://localhost:8080/student/1/first-name/last-name
+    @GetMapping("{id}/{first-name}/{last-name}")
     public ResponseEntity<Student> studentPathVariable(@PathVariable int id,
                                        @PathVariable("first-name") String firstName,
                                        @PathVariable("last-name") String lastName) {
@@ -47,7 +48,7 @@ public class StudentController {
     }
 
     // http://localhost:8080/student/query?id=1&firstName=Rama&lastName=Krishna
-    @GetMapping("student/query")
+    @GetMapping("query")
     public ResponseEntity<Student> studentRequestVariable(@RequestParam int id,
                                           @RequestParam String firstName,
                                           @RequestParam String lastName) {
@@ -56,7 +57,7 @@ public class StudentController {
     }
 
     // http://localhost:8080/student/create
-    @PostMapping("student/create")
+    @PostMapping("create")
 //    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Student> createStudent(@RequestBody Student student) {
         System.out.println(student);
@@ -64,7 +65,7 @@ public class StudentController {
     }
 
     // http://localhost:8080/student/4/update
-    @PutMapping("student/{id}/update")
+    @PutMapping("{id}/update")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable int id) {
         System.out.println(student);
         student.setId(id);
@@ -73,7 +74,7 @@ public class StudentController {
     }
 
     // http://localhost:8080/student/3/delete
-    @DeleteMapping("student/{id}/delete")
+    @DeleteMapping("{id}/delete")
     public ResponseEntity<String> deleteStudent(@PathVariable int id) {
         System.out.println(id);
         return ResponseEntity.ok("Student deleted successfully");
