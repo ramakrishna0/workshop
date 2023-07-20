@@ -1,10 +1,11 @@
 package com.rk.springbootrestfulwebservices.service.impl;
 
+import com.rk.springbootrestfulwebservices.dto.UserDto;
 import com.rk.springbootrestfulwebservices.entity.User;
+import com.rk.springbootrestfulwebservices.mapper.UserMapper;
 import com.rk.springbootrestfulwebservices.repository.UserRepository;
 import com.rk.springbootrestfulwebservices.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,29 +17,35 @@ public class UserServiceImpl implements UserService {
 //    @Autowired //can be omitted for single instance variable class
     private UserRepository userRepository;
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserDto createUser(UserDto userDto) {
+        //convert userDto to user
+        User user = UserMapper.mapToUser(userDto);
+        User savedUser = userRepository.save(user);
+        // convert user to userDto
+        return UserMapper.mapToUserDto(savedUser);
     }
 
     @Override
-    public User getUserById(Long userId) {
+    public UserDto getUserById(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
 //        return optionalUser.get();
-        return optionalUser.orElse(null);
+        return UserMapper.mapToUserDto(optionalUser.get());
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserDto> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(UserMapper::mapToUserDto)
+                .toList();
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserDto updateUser(UserDto user) {
         User existingUser = userRepository.findById(user.getId()).get();
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setEmail(user.getEmail());
-        return userRepository.save(existingUser);
+        return UserMapper.mapToUserDto(userRepository.save(existingUser));
     }
 
     @Override
