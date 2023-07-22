@@ -2,6 +2,7 @@ package com.rk.springbootrestfulwebservices.service.impl;
 
 import com.rk.springbootrestfulwebservices.dto.UserDto;
 import com.rk.springbootrestfulwebservices.entity.User;
+import com.rk.springbootrestfulwebservices.exception.EmailAlreadyExistsException;
 import com.rk.springbootrestfulwebservices.exception.ErrorDetails;
 import com.rk.springbootrestfulwebservices.exception.ResourceNotFoundException;
 import com.rk.springbootrestfulwebservices.mapper.AutoUserMapper;
@@ -17,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +30,11 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) {
         //convert userDto to user
 //        User user = UserMapper.mapToUser(userDto);
+
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
+        if (optionalUser.isPresent()) {
+            throw new EmailAlreadyExistsException("Email already exists for User");
+        }
         User user = modelMapper.map(userDto, User.class);
         User savedUser = userRepository.save(user);
         // convert user to userDto
