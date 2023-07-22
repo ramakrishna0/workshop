@@ -2,16 +2,21 @@ package com.rk.springbootrestfulwebservices.service.impl;
 
 import com.rk.springbootrestfulwebservices.dto.UserDto;
 import com.rk.springbootrestfulwebservices.entity.User;
+import com.rk.springbootrestfulwebservices.exception.ErrorDetails;
+import com.rk.springbootrestfulwebservices.exception.ResourceNotFoundException;
 import com.rk.springbootrestfulwebservices.mapper.AutoUserMapper;
-import com.rk.springbootrestfulwebservices.mapper.UserMapper;
 import com.rk.springbootrestfulwebservices.repository.UserRepository;
 import com.rk.springbootrestfulwebservices.service.UserService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,11 +38,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long userId) {
-        Optional<User> optionalUser = userRepository.findById(userId);
+        System.out.println("RK: get user by id");
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("user", "id", userId)
+        );
+
 //        return optionalUser.get();
 //        return UserMapper.mapToUserDto(optionalUser.get());
 //        return modelMapper.map(optionalUser.get(), UserDto.class);
-        return AutoUserMapper.MAPPER.mapToUserDto(optionalUser.get());
+        return AutoUserMapper.MAPPER.mapToUserDto(user);
     }
 
     @Override
@@ -55,7 +64,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(UserDto user) {
-        User existingUser = userRepository.findById(user.getId()).get();
+        User existingUser = userRepository.findById(user.getId()).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", user.getId())
+        );
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setEmail(user.getEmail());
@@ -67,6 +78,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
-        userRepository.deleteById(userId);
+        User existingUser = userRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("User", "id", userId)
+        );
+        userRepository.deleteById(existingUser.getId());
     }
 }

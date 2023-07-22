@@ -2,11 +2,14 @@ package com.rk.springbootrestfulwebservices.controller;
 
 import com.rk.springbootrestfulwebservices.dto.UserDto;
 import com.rk.springbootrestfulwebservices.entity.User;
+import com.rk.springbootrestfulwebservices.exception.ErrorDetails;
+import com.rk.springbootrestfulwebservices.exception.ResourceNotFoundException;
 import com.rk.springbootrestfulwebservices.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -65,4 +70,18 @@ public class UserController {
         userService.deleteUser(userId);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
     }
+
+    /*
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorDetails> handleResourceNotFound(ResourceNotFoundException exception,
+                                                               WebRequest webRequest) {
+        ErrorDetails errorDetails = new ErrorDetails(
+                LocalDateTime.now(),
+                exception.getMessage(),
+                webRequest.getDescription(false),
+                "USER_NOT_FOUND"
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+    */
 }
