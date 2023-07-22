@@ -2,6 +2,7 @@ package com.rk.springbootrestfulwebservices.service.impl;
 
 import com.rk.springbootrestfulwebservices.dto.UserDto;
 import com.rk.springbootrestfulwebservices.entity.User;
+import com.rk.springbootrestfulwebservices.mapper.AutoUserMapper;
 import com.rk.springbootrestfulwebservices.mapper.UserMapper;
 import com.rk.springbootrestfulwebservices.repository.UserRepository;
 import com.rk.springbootrestfulwebservices.service.UserService;
@@ -26,7 +27,8 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(user);
         // convert user to userDto
 //        return UserMapper.mapToUserDto(savedUser);
-        return modelMapper.map(savedUser, UserDto.class);
+//        return modelMapper.map(savedUser, UserDto.class);
+        return AutoUserMapper.MAPPER.mapToUserDto(savedUser);
     }
 
     @Override
@@ -34,7 +36,8 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(userId);
 //        return optionalUser.get();
 //        return UserMapper.mapToUserDto(optionalUser.get());
-        return modelMapper.map(optionalUser.get(), UserDto.class);
+//        return modelMapper.map(optionalUser.get(), UserDto.class);
+        return AutoUserMapper.MAPPER.mapToUserDto(optionalUser.get());
     }
 
     @Override
@@ -42,8 +45,11 @@ public class UserServiceImpl implements UserService {
         /*return userRepository.findAll().stream()
                 .map(UserMapper::mapToUserDto)
                 .toList();*/
-        return userRepository.findAll().stream()
+        /*return userRepository.findAll().stream()
                 .map(user -> modelMapper.map(user, UserDto.class))
+                .toList();*/
+        return userRepository.findAll().stream()
+                .map(AutoUserMapper.MAPPER::mapToUserDto)
                 .toList();
     }
 
@@ -53,8 +59,10 @@ public class UserServiceImpl implements UserService {
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
         existingUser.setEmail(user.getEmail());
+        // User updatedUser = userRepository.save(existingUser);
 //        return UserMapper.mapToUserDto(userRepository.save(existingUser));
-        return modelMapper.map(userRepository.save(existingUser), UserDto.class);
+//        return modelMapper.map(userRepository.save(existingUser), UserDto.class);
+        return AutoUserMapper.MAPPER.mapToUserDto(userRepository.save(existingUser));
     }
 
     @Override
