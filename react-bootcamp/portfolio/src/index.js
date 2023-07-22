@@ -7,6 +7,7 @@ import Jokes from "./components/Jokes"
 import './index.css';
 import Header from "./components/Header";
 import MusicMaster from './projects/music-master/'
+import EvensOrOdds from "./projects/evens-or-odds";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +17,7 @@ root.render(
             <Route path='/' element={<Header><App/></Header>}/>
             <Route path='/jokes' element={<Header><Jokes/></Header>}/>
             <Route path={'/music-master'} element={<Header><MusicMaster/></Header>}/>
+            <Route path={'/evens-or-odds'} element={<Header><EvensOrOdds/></Header>}/>
         </Routes>
     </BrowserRouter>
 );
