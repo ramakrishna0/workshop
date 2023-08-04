@@ -1,17 +1,16 @@
 package com.rk.employeeservice.dto;
 
+import com.rk.departmentservice.dto.DepartmentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDto {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String departmentCode;
+public class APIResponseDto {
+    private EmployeeDto employeeDto;
+    private DepartmentDTO departmentDTO;
 }
