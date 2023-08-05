@@ -7,6 +7,7 @@ import com.rk.employeeservice.entity.Employee;
 import com.rk.employeeservice.exception.EmailAlreadyExistsException;
 import com.rk.employeeservice.exception.ResourceNotFoundException;
 import com.rk.employeeservice.respository.EmployeeRepository;
+import com.rk.employeeservice.service.APIClient;
 import com.rk.employeeservice.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -25,7 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     private ModelMapper modelMapper;
 //    private RestTemplate restTemplate;
-    private WebClient webClient;
+//    private WebClient webClient;
+    private APIClient apiClient;
 
     @Override
     public EmployeeDto saveEmployee(EmployeeDto employeeDto) {
@@ -56,11 +58,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         );
         DepartmentDTO departmentDTO = responseEntity.getBody();*/
 
-        DepartmentDTO departmentDTO = webClient.get()
+        /*DepartmentDTO departmentDTO = webClient.get()
                 .uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode())
                 .retrieve()
                 .bodyToMono(DepartmentDTO.class)
-                .block();
+                .block();*/
+
+        DepartmentDTO departmentDTO = apiClient.getDepartment(employee.getDepartmentCode());
 
         //convert Employee to EmployeeDto
         EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
