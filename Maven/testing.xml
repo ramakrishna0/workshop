@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Testing Google Apps">
+    <!-- This parameter will be passed to every test in this suite -->
+    <parameter name="suite-param" value="suite level parameter" />
+    <parameter name="testng" value="${testng}"/>
+
+    <test name="Regression">
+        <!-- This parameter will be passed this test only -->
+        <parameter name="test-two-param" value="Test two parameter" />
+        <parameter name="testng2" value="${testng2}"/>
+
+        <classes>
+            <class name="Googletest.GmailTest"/>
+<!--            <class name="Googletest.MapsTest"/>-->
+<!--            <class name="Googletest.ImagesTest"/>-->
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->
