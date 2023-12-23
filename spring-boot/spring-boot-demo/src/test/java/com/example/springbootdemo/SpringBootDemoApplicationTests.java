@@ -8,6 +8,7 @@ class SpringBootDemoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("Rama Krishna");
 	}
 
 }
