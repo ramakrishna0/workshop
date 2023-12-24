@@ -1,5 +1,6 @@
 package com.rk.employeeservice.service.impl;
 
+import com.example.organizationservice.dto.OrganizationDto;
 import com.rk.departmentservice.dto.DepartmentDTO;
 import com.rk.employeeservice.dto.APIResponseDto;
 import com.rk.employeeservice.dto.EmployeeDto;
@@ -59,6 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = optionalEmployee.orElseThrow(
                 () -> new ResourceNotFoundException("employee", "id", employeeId)
         );
+        System.out.println(employee.toString());
         /*ResponseEntity<DepartmentDTO> responseEntity = restTemplate.getForEntity(
                 "http://localhost:8080/api/departments/" + employee.getDepartmentCode(),
                 DepartmentDTO.class
@@ -71,12 +73,18 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .bodyToMono(DepartmentDTO.class)
                 .block();
 
+        OrganizationDto organizationDto = webClient.get()
+                .uri("http://localhost:8083/api/organizations/" + employee.getOrganizationCode())
+                .retrieve()
+                .bodyToMono(OrganizationDto.class)
+                .block();
+
 //        DepartmentDTO departmentDTO = apiClient.getDepartment(employee.getDepartmentCode());
 
         //convert Employee to EmployeeDto
         EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
 
-        return new APIResponseDto(employeeDto, departmentDTO);
+        return new APIResponseDto(employeeDto, departmentDTO, organizationDto);
     }
 
     public APIResponseDto getDefaultDepartment(Long employeeId, Exception exception) {
@@ -93,7 +101,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         //convert Employee to EmployeeDto
         EmployeeDto employeeDto = modelMapper.map(employee, EmployeeDto.class);
 
-        return new APIResponseDto(employeeDto, departmentDTO);
+        OrganizationDto organizationDto = new OrganizationDto();
+
+        return new APIResponseDto(employeeDto, departmentDTO, organizationDto);
 
     }
 }
